@@ -1,0 +1,20 @@
+---
+- name: play-book
+- hosts: all
+- become: true
+- tasks:
+    - name: httpd installation
+      yum:
+        name: httpd
+        state: present
+    
+    - name: stop firewalld
+      service:
+        name: firewalld
+        state: stopped
+        enabled: false
+    - name: sart and enalbe httpd
+      service:
+        name: httpd
+        state: started
+        enabled: true
